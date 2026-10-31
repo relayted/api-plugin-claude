@@ -9,11 +9,15 @@ The relayted API sells screenshots (shots), web page conversion (websitepro) and
 
 All calls go through the helper `${CLAUDE_PLUGIN_ROOT}/scripts/relayted.mjs` (Node 18+). It reads the key from the environment variable `RELAYTED_API_KEY` and prints JSON. Never print, log or ask for the key in the chat.
 
+## Always check first
+
+Before anything else run `balance`. If it returns `no_key`, guide the user step by step through the setup below, one step at a time, and tell them to open a NEW terminal and start `claude` again after setting the variable. If it returns an authorization error (`http_401`/`http_403` or a message about the key), the key is wrong or was replaced: create a new key. If it returns a balance, everything works; say so in one sentence.
+
 ## First-time setup (the user does this once, in the browser)
 
 1. Open https://api.relayted.de/account and top up the balance (1 EUR is enough to try it).
 2. Click to create an API key. It is shown once.
-3. Store it as an environment variable, then restart Claude Code:
+3. Store it as an environment variable (in PowerShell or a normal terminal, not inside Claude Code), then close all terminals and start Claude Code again in a new one:
    - Windows (PowerShell): `setx RELAYTED_API_KEY "<key>"`
    - macOS/Linux: add `export RELAYTED_API_KEY="<key>"` to the shell profile.
 
