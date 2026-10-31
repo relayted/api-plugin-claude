@@ -1,0 +1,9 @@
+{
+  "name": "relayted-api",
+  "version": "0.1.0",
+  "description": "Screenshots in real browsers, web pages as Markdown/PDF and Nostr relay tests, straight from Claude. Pay per result with Lightning, no account, no subscription.",
+  "homepage": "https://api.relayted.de",
+  "repository": "https://github.com/relayted/api-plugin-claude",
+  "license": "MIT",
+  "keywords": ["screenshots", "markdown", "pdf", "nostr", "relay", "lightning", "api"]
+}

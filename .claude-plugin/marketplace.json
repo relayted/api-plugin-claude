@@ -1,0 +1,11 @@
+{
+  "name": "relayted",
+  "owner": { "name": "relayted" },
+  "plugins": [
+    {
+      "name": "relayted-api",
+      "source": "./",
+      "description": "Screenshots in real browsers, web pages as Markdown/PDF and Nostr relay tests. Pay per result with Lightning, no account."
+    }
+  ]
+}
