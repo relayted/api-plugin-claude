@@ -10,19 +10,22 @@ Use the [relayted API](https://api.relayted.de) straight from Claude Code:
 
 Prepaid, per delivered result, paid with Bitcoin Lightning. No account, no subscription. Failed results are refunded automatically.
 
-## Install
+## Quick start (5 minutes, once)
 
-```
-/plugin marketplace add relayted/api-plugin-claude
-/plugin install relayted-api@relayted
-```
+This plugin is for **Claude Code** (terminal or desktop app with Code). It is not available in the normal Claude chat.
 
-## Set up (once)
-
-1. Open <https://api.relayted.de/account>, top up (1 EUR is enough to try it) and create an API key.
-2. Put the key into the environment variable `RELAYTED_API_KEY` and restart Claude Code.
+1. **Key:** open <https://api.relayted.de/account>, top up (1 EUR is enough to try it) and create an API key.
+2. **Save the key** in the environment variable `RELAYTED_API_KEY`. Do this in PowerShell or a normal terminal, not inside Claude Code:
    - Windows: `setx RELAYTED_API_KEY "<key>"`
-   - macOS/Linux: `export RELAYTED_API_KEY="<key>"` in your shell profile
+   - macOS/Linux: add `export RELAYTED_API_KEY="<key>"` to your shell profile
+3. **Restart:** close all terminal windows, open a new one and start `claude`. A running session does not see the new variable.
+4. **Install** (inside Claude Code):
+   ```
+   /plugin marketplace add relayted/api-plugin-claude
+   /plugin install relayted-api@relayted
+   ```
+   Then run `/reload-plugins` or restart Claude Code.
+5. **Test:** ask "What is my relayted balance?" It is free and shows whether the key works.
 
 Requires Node 18 or newer. The key is only read from the environment and never printed.
 
@@ -34,6 +37,17 @@ Just ask Claude, for example:
 - "Get https://example.com/docs as Markdown."
 - "Test the Nostr relay wss://relay.example.com."
 - "What is my relayted balance?"
+
+## Troubleshooting
+
+| Message / symptom | Fix |
+|---|---|
+| `no_key` or "RELAYTED_API_KEY is not set" | Step 2 and 3: set the variable, then open a **new** terminal and start `claude` there. Check with `echo $env:RELAYTED_API_KEY` (PowerShell) or `echo $RELAYTED_API_KEY`. |
+| Error mentioning the key, `http_401` or `http_403` | The key is wrong or was replaced. Create a new key on the account page and set it again. |
+| `insufficient_funds` | Top up: ask "Top up 1 EUR of relayted balance" and pay the Lightning invoice with your wallet. |
+| Skills are not found | Run `/plugin` and check that `relayted-api` is enabled, then `/reload-plugins`. |
+| `node` not found | Install Node 18 or newer. |
+| `network` | No internet access or api.relayted.de is not reachable; try again. |
 
 ## Cost protection
 
